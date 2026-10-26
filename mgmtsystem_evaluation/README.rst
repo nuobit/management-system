@@ -70,7 +70,7 @@ Authors
 Contributors
 ------------
 
--  Enric Tobella
+- Enric Tobella
 
 Maintainers
 -----------
