@@ -57,13 +57,18 @@
                         invisible="active"
                     />
                     <field name="active" invisible="1" />
-                    <group readonly="state != 'draft'">
-                        <field name="name" />
+                    <group>
+                        <field name="name" readonly="state != 'draft'" />
                         <field
                             name="template_id"
                             options="{'no_create': True, 'no_open': True}"
+                            readonly="state != 'draft'"
                         />
-                        <field name="manager_ids" widget="many2many_tags" />
+                        <field
+                            name="manager_ids"
+                            widget="many2many_tags"
+                            readonly="state != 'draft'"
+                        />
                         <field name="model_id" invisible="1" />
                         <field name="model" invisible="1" />
                         <field name="res_id" invisible="1" />
@@ -71,6 +76,7 @@
                             name="resource"
                             options="{'hide_model': 1, 'model_field_char': 'model'}"
                             invisible="not template_id and not model_id"
+                            readonly="state != 'draft'"
                         />
                         <field
                             name="result_id"
@@ -94,17 +100,15 @@
                             name="feedback"
                             string="Feedback"
                             invisible="not is_manager and not is_user"
-                            readonly="state != 'done'"
                         >
-                            <field name="feedback" />
+                            <field name="feedback" readonly="state == 'done'" />
                         </page>
                         <page
                             name="note"
                             string="Private notes"
                             invisible="not is_manager"
-                            readonly="state == 'done'"
                         >
-                            <field name="note" />
+                            <field name="note" readonly="state == 'done'" />
                         </page>
                     </notebook>
                 </sheet>

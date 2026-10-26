@@ -1,4 +1,5 @@
 # Copyright 2023 CreuBlanca
+# Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from freezegun import freeze_time
@@ -178,6 +179,36 @@ class TestEvaluation(TransactionCase):
                 ]
             )
         )
+
+    def test_edit_by_state(self):
+        with Form(self.env["mgmtsystem.evaluation"]) as f:
+            f.template_id = self.template
+            f.resource = self.partner
+        evaluation = f.save()
+        evaluation.manager_ids = self.manager
+        with Form(evaluation.with_user(self.manager)) as f:
+            f.name = "Draft name"
+            f.feedback = "Draft feedback"
+            f.note = "Draft note"
+        self.assertEqual("Draft name", evaluation.name)
+        self.assertEqual("<p>Draft feedback</p>", evaluation.feedback)
+        self.assertEqual("<p>Draft note</p>", evaluation.note)
+        evaluation.draft2progress()
+        with Form(evaluation.with_user(self.manager)) as f:
+            with self.assertRaisesRegex(AssertionError, "readonly field 'name'"):
+                f.name = "Progress name"
+            f.feedback = "Progress feedback"
+            f.note = "Progress note"
+        self.assertEqual("Draft name", evaluation.name)
+        self.assertEqual("<p>Progress feedback</p>", evaluation.feedback)
+        self.assertEqual("<p>Progress note</p>", evaluation.note)
+        evaluation.result_id = self.result_passed
+        evaluation.progress2done()
+        with Form(evaluation.with_user(self.manager)) as f:
+            with self.assertRaisesRegex(AssertionError, "readonly field 'feedback'"):
+                f.feedback = "Done feedback"
+            with self.assertRaisesRegex(AssertionError, "readonly field 'note'"):
+                f.note = "Done note"
 
     def test_cancel_back_to_draft(self):
         with Form(self.env["mgmtsystem.evaluation"]) as f:

@@ -1,4 +1,5 @@
 # Copyright 2023 CreuBlanca
+# Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -12,7 +13,7 @@ class MgmtsystemEvaluation(models.Model):
     ]
     _description = "Evaluation"
 
-    name = fields.Char(compute="_compute_name", store=True)
+    name = fields.Char(compute="_compute_name", store=True, readonly=False)
     model = fields.Char(
         index=True,
         compute="_compute_template_fields",
@@ -60,8 +61,10 @@ class MgmtsystemEvaluation(models.Model):
         required=True,
     )
     active = fields.Boolean(default=True)
-    feedback = fields.Html(compute="_compute_template_fields", store=True)
-    note = fields.Html(compute="_compute_template_fields", store=True)
+    feedback = fields.Html(
+        compute="_compute_template_fields", store=True, readonly=False
+    )
+    note = fields.Html(compute="_compute_template_fields", store=True, readonly=False)
     passed = fields.Boolean(readonly=True)
     is_user = fields.Boolean(compute="_compute_filter_views")
     is_manager = fields.Boolean(compute="_compute_filter_views")
