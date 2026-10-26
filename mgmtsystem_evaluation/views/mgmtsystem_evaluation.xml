@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2023 CreuBlanca
+     Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="mgmtsystem_evaluation_form_view">
@@ -135,7 +136,7 @@
                 <field name="name" />
                 <field name="template_id" />
                 <field name="res_id" />
-                <field name="model" invisible="1" />
+                <field name="model" column_invisible="1" />
                 <field name="state" />
             </list>
         </field>
