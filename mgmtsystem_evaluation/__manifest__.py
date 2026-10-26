@@ -1,4 +1,5 @@
 # Copyright 2022 CreuBlanca
+# Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
@@ -22,7 +23,7 @@
     "demo": ["demo/demo.xml"],
     "assets": {
         "web.assets_backend": [
-            "mgmtsystem_evaluation/**/*",
+            "mgmtsystem_evaluation/static/src/**/*",
         ],
     },
 }
