@@ -1,0 +1,29 @@
+# Copyright 2022 CreuBlanca
+# Copyright 2026 NuoBiT Solutions SL - Eric Antones <eantones@nuobit.com>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+{
+    "name": "Mgmtsystem Evaluation",
+    "summary": """
+        Evaluate records within your management system""",
+    "version": "18.0.1.0.0",
+    "license": "AGPL-3",
+    "author": "CreuBlanca,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/management-system",
+    "depends": ["mgmtsystem", "mail"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "views/mgmtsystem_evaluation_result.xml",
+        "views/mgmtsystem_evaluation_template.xml",
+        "views/mgmtsystem_evaluation.xml",
+        "views/res_partner.xml",
+        "data/cron.xml",
+    ],
+    "demo": ["demo/demo.xml"],
+    "assets": {
+        "web.assets_backend": [
+            "mgmtsystem_evaluation/static/src/**/*",
+        ],
+    },
+}
