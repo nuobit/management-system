@@ -26,5 +26,6 @@
     "category": "Generic Modules/Others",
     "depends": ["mgmtsystem_manual"],
     "data": ["data/document_page.xml"],
+    "development_status": "Beta",
     "installable": True,
 }
