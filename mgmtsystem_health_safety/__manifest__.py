@@ -15,6 +15,7 @@
         "mgmtsystem_hazard_risk",
     ],
     "data": ["data/health_safety.xml"],
+    "development_status": "Beta",
     "installable": True,
     "application": True,
 }
