@@ -32,6 +32,7 @@
     ],
     "data": ["data/environment.xml"],
     "demo": [],
+    "development_status": "Beta",
     "installable": True,
     "application": True,
 }
